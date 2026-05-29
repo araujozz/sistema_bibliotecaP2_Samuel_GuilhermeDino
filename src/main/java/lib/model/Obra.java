@@ -20,7 +20,7 @@ public class Obra {
         this.anoPublicacao = anoPublicacao;
         this.editora = editora;
         this.categoria = categoria;
-        this.copias = new ArrayList();
+        this.copias = new ArrayList<>();
     }
 
     public Obra(String titulo, String autor, String isbn, int anoPublicacao, String editora, String categoria) {

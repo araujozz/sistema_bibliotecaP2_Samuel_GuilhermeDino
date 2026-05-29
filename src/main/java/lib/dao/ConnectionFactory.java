@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionFactory {
-    private static final String URL = "jdbc:sqlite:biblioteca.db";
+    private static final String URL = "jdbc:sqlite:bd/biblioteca.db";
 
     private static Connection connection = null;
 

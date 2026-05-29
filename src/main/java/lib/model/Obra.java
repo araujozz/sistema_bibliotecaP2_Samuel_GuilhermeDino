@@ -12,8 +12,6 @@ public class Obra {
     private String categoria;
     private List<Copia> copias;
 
-
-
     public Obra(int id, String titulo, String autor, String isbn, int anoPublicacao, String editora, String categoria) {
         this.id = id;
         this.titulo = titulo;
@@ -27,6 +25,44 @@ public class Obra {
 
     public Obra(String titulo, String autor, String isbn, int anoPublicacao, String editora, String categoria) {
         this(0, titulo, autor, isbn, anoPublicacao, editora, categoria);
+    }
+
+    // retorna a primeira cópia disponível, ou null se não houve
+    public Copia getCopiaDisponivel(){
+        for(Copia c : copias){
+            if(c.isDisponivel()){
+                return c;
+            }
+        }
+    return null;
+    }
+
+    // verifica se existe ao menos uma cópia disponível
+    public boolean isDisponivel(){
+        return getCopiaDisponivel() != null;
+    }
+
+    // conta o total de cópias
+    public int getTotalCopias(){
+        return copias.size();
+    }
+
+    // conta só as cópias disponíveis
+    public int getTotalCopiasDisponiveis(){
+        int soma = 0;
+        for (Copia c : copias){
+            if(c.isDisponivel())soma++;
+        }
+        return  soma;
+    }
+    // usado pelo DAO para popular a lista ao carregar do banco
+    public void addCopia(Copia copia){
+        this.copias.add(copia);
+    }
+
+    @Override
+    public String toString() {
+        return titulo + " — " + autor + " (" + anoPublicacao + ")";
     }
 
     public int getId() {
@@ -85,5 +121,4 @@ public class Obra {
         this.categoria = categoria;
     }
     
-
 }
